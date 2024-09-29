@@ -28,7 +28,7 @@ fn main() {
 
     let total = Instant::now();
 
-    for i in 48..49 {
+    for i in 1..69 {
         let mut st = State::new();
         st.size_terminal = terminal;
         st.conj = i as usize;
@@ -36,8 +36,8 @@ fn main() {
         let start = Instant::now();
         println!("Conjecture {}", i);
 
-        //let st1 = methods::NMCS::launch_nmcs(st.clone(), level, heuristic, verbose, timeout, String::from(format!("NMCS{}", level)));
-        //let st2 = methods::NRPA::launch_nrpa(level, st.clone(), timeout, verbose, String::from(format!("NRPA{}", level)));
+        let st1 = methods::NMCS::launch_nmcs(st.clone(), level, heuristic, verbose, timeout, String::from(format!("NMCS{}", level)));
+        let st2 = methods::NRPA::launch_nrpa(level, st.clone(), timeout, verbose, String::from(format!("NRPA{}", level)));
         let st3 = methods::GRAVE::launch_grave(st.clone(), 50, 0.0, heuristic, timeout, verbose, "GRAVE".to_string());
         let st4 = methods::BFS::launch_bfs(st.clone(),heuristic, -1, timeout, verbose, "BFS".to_string());
         let st5 = methods::ILS::iterative_local_search(terminal, 4, i as usize, timeout, verbose, "ILS".to_string());
